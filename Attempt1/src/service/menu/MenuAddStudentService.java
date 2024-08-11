@@ -22,7 +22,12 @@ public class MenuAddStudentService implements MenuAddStudentServiceInter {
         student.setName(name);
         student.setSurname(surname);
 
+
+        Config object = (Config) FileUtility.readFileDeserialize("app.obj");
+
+        Config.setConfig(object);
         Config.instance().appendStudent(student);
+
         System.out.println("Student added");
 
         Config.save();

@@ -4,6 +4,7 @@ import bean.Config;
 import bean.Student;
 import bean.Teacher;
 import service.menu.inter.MenuAddStudentServiceInter;
+import util.FileUtility;
 
 import java.util.Scanner;
 
@@ -23,7 +24,12 @@ public class MenuAddTeacherService implements MenuAddStudentServiceInter {
         teacher.setName(name);
         teacher.setSurname(surname);
 
+        Config object = (Config) FileUtility.readFileDeserialize("app.obj");
+
+        Config.setConfig(object);
         Config.instance().appendTeacher(teacher);
+
+        System.out.println("Teacher added");
 
         Config.save();
     }
